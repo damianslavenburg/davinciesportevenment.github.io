@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-sport Event Da Vinci College</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎮 Da Vinci College E-sport Event</h1>
+      <p>Het grootste e-sport event OOIT georganiseerd door het Da Vinci College!</p>
+    </header>
+
+    <section>
+      <h2>Wat kan je verwachten?</h2>
+      <ul>
+        <li><strong>🔥 Fortnite:</strong> Bouw, schiet en wees de laatste die overblijft!</li>
+        <li><strong>🤖 R.E.P.O:</strong> Haal zo snel mogelijk de meest waardevolle spullen bij elkaar en win!</li>
+        <li><strong>🔫 Valorant:</strong> Tactiek, snelheid en aim brengen je naar de overwinning!</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Voor wie?</h2>
+      <p>Alle MBO-studenten binnen het Da Vinci College 💡</p>
+    </section>
+
+    <section>
+      <h2>Wanneer?</h2>
+      <p>📆 Vrijdag 19 april</p>
+    </section>
+
+    <section>
+      <h2>Waar?</h2>
+      <p>
+        🚩 Evenementenhal Gorinchem<br>
+        Franklinweg 2, 4207 HZ
+      </p>
+    </section>
+
+    <section>
+      <h2>Inschrijven</h2>
+      <form action="https://formspree.io/f/mwplwzpg" method="POST" class="form" target="_blank">
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" name="naam" required>
+
+        <label for="email">E-mailadres:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="game">Kies je game:</label>
+        <select id="game" name="game" required>
+          <option value="">-- Selecteer --</option>
+          <option value="fortnite">Fortnite</option>
+          <option value="repo">R.E.P.O</option>
+          <option value="valorant">Valorant</option>
+        </select>
+
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Nieuwe inschrijving E-sport Event!">
+
+        <button type="submit">Verstuur inschrijving</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>© 2025 Da Vinci College – E-sport Event</p>
+    </footer>
+  </div>
+</body>
+</html>
