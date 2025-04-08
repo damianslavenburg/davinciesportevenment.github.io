@@ -1,86 +1,90 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>E-sport Event Da Vinci College</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toestemmingsformulier Camerabeelden</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <h1>📸 Toestemmingsformulier Camerabeelden</h1>
+    <p>Voor het Da Vinci College E-sport Event</p>
+  </header>
 
-  <nav>
-    <a href="#inschrijven">Inschrijven</a>
-  </nav>
+  <section id="formulier">
+    <h2>Waarom dit formulier?</h2>
+    <p>
+      De camerabeelden worden opgenomen ter bevordering van de veiligheid van personen, bescherming van eigendommen en toezicht op de locatie.
+    </p>
+    <h3>Bewaartermijn</h3>
+    <p>
+      De beelden worden opgeslagen voor een maximale termijn van <strong>[vul hier het aantal dagen/weken in, maximaal 23 dagen]</strong>, tenzij er een incident is vastgelegd.
+    </p>
+    <h3>Wettelijke grondslag (AVG)</h3>
+    <p>
+      De verwerking van camerabeelden gebeurt onder de Algemene Verordening Gegevensbescherming (AVG). De beelden worden uitsluitend gebruikt voor het hierboven genoemde doel.
+    </p>
+    <h3>Rechten van betrokkenen</h3>
+    <ul>
+      <li>U heeft het recht om de camerabeelden waarop u mogelijk voorkomt in te zien.</li>
+      <li>U kunt een verzoek tot verwijdering of beperking van de verwerking indienen.</li>
+      <li>U kunt een klacht indienen bij de Autoriteit Persoonsgegevens.</li>
+    </ul>
+    <p><em>Door ondertekening geeft u ook stilzwijgend toestemming om de indiener van dit formulier te trakteren op KFC. 🍗😉</em></p>
+  </section>
 
-  <div class="container">
-    <header>
-      <h1>🎮 Da Vinci College E-sport Event</h1>
-      <p>Het grootste e-sport event OOIT georganiseerd door het Da Vinci College!</p>
-    </header>
+  <section id="handtekening">
+    <h2>Handtekening</h2>
+    <p>Zet hieronder je handtekening als je akkoord gaat:</p>
+    <canvas id="tekenveld" width="375" height="200"></canvas>
+    <div class="buttons">
+      <button onclick="wisCanvas()">Wissen</button>
+      <button onclick="downloadCanvas()">Download Handtekening</button>
+    </div>
 
-    <section>
-      <h2>Wat kan je verwachten?</h2>
-      <ul>
-        <li><strong>🔥 Fortnite:</strong> Bouw, schiet en wees de laatste die overblijft!</li>
-        <li><strong>🤖 R.E.P.O:</strong> Haal zo snel mogelijk de meest waardevolle spullen bij elkaar en win!</li>
-        <li><strong>🔫 Valorant:</strong> Tactiek, snelheid en aim brengen je naar de overwinning!</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Voor wie?</h2>
-      <p>Alle MBO-studenten binnen het Da Vinci College 💡</p>
-    </section>
-
-    <section>
-      <h2>Wanneer?</h2>
-      <p>📆 Vrijdag 19 april</p>
-    </section>
-
-    <section>
-      <h2>Waar?</h2>
-      <p>
-        🚩 Evenementenhal Gorinchem<br>
-        Franklinweg 2, 4207 HZ
-      </p>
-    </section>
-
-    <section id="inschrijven">
-      <h2>Inschrijven</h2>
-      <form action="https://formspree.io/f/mwplwzpg" method="POST" class="form" target="_blank">
-        <label for="naam">Naam:</label>
-        <input type="text" id="naam" name="naam" required>
-
-        <label for="email">E-mailadres:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="game">Kies je game:</label>
-        <select id="game" name="game" required>
-          <option value="">-- Selecteer --</option>
-          <option value="fortnite">Fortnite</option>
-          <option value="repo">R.E.P.O</option>
-          <option value="valorant">Valorant</option>
-        </select>
-
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="Nieuwe inschrijving E-sport Event!">
-
-        <button type="submit">Verstuur inschrijving</button>
-      </form>
-    </section>
-
-    <section id="toestemming">
-      <h2>Toestemmingsformulier</h2>
-      <iframe 
-        title="Toestemmingsformulier Camerabeelden KFC"
-        src="https://eu.jotform.com/sign/250973029409057/invite/01jracw5cm20594a8e1817a86e?signEmbed=1">
-      </iframe>
-    </section>
-  </div>
+    <div class="upload-box">
+      <label for="bestand">Upload eventueel het ingevulde formulier (PDF, PNG, JPG):</label>
+      <input type="file" id="bestand" name="bestand" accept=".pdf,.jpg,.jpeg,.png">
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 Da Vinci College – E-sport Event</p>
+    <p>© 2025 Da Vinci College – Camerabeelden Toestemming</p>
   </footer>
 
+  <script>
+    const canvas = document.getElementById('tekenveld');
+    const ctx = canvas.getContext('2d');
+    let tekenen = false;
+
+    canvas.addEventListener('mousedown', () => tekenen = true);
+    canvas.addEventListener('mouseup', () => tekenen = false);
+    canvas.addEventListener('mouseout', () => tekenen = false);
+    canvas.addEventListener('mousemove', teken);
+
+    function teken(e) {
+      if (!tekenen) return;
+      const rect = canvas.getBoundingClientRect();
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function wisCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function downloadCanvas() {
+      const link = document.createElement('a');
+      link.download = 'handtekening.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
 </body>
 </html>
