@@ -3,87 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toestemmingsformulier Camerabeelden</title>
+  <title>E-sport Event Da Vinci College</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>📸 Toestemmingsformulier Camerabeelden</h1>
-    <p>Voor het Da Vinci College E-sport Event</p>
-  </header>
+  <nav class="top-nav">
+    <button onclick="document.getElementById('toestemming').scrollIntoView({behavior: 'smooth'})">
+      📄 Ga naar toestemmingsformulier
+    </button>
+  </nav>
 
-  <section id="formulier">
-    <h2>Waarom dit formulier?</h2>
-    <p>
-      De camerabeelden worden opgenomen ter bevordering van de veiligheid van personen, bescherming van eigendommen en toezicht op de locatie.
-    </p>
-    <h3>Bewaartermijn</h3>
-    <p>
-      De beelden worden opgeslagen voor een maximale termijn van <strong>[vul hier het aantal dagen/weken in, maximaal 23 dagen]</strong>, tenzij er een incident is vastgelegd.
-    </p>
-    <h3>Wettelijke grondslag (AVG)</h3>
-    <p>
-      De verwerking van camerabeelden gebeurt onder de Algemene Verordening Gegevensbescherming (AVG). De beelden worden uitsluitend gebruikt voor het hierboven genoemde doel.
-    </p>
-    <h3>Rechten van betrokkenen</h3>
-    <ul>
-      <li>U heeft het recht om de camerabeelden waarop u mogelijk voorkomt in te zien.</li>
-      <li>U kunt een verzoek tot verwijdering of beperking van de verwerking indienen.</li>
-      <li>U kunt een klacht indienen bij de Autoriteit Persoonsgegevens.</li>
-    </ul>
-    <p><em>Door ondertekening geeft u ook stilzwijgend toestemming om de indiener van dit formulier te trakteren op KFC. 🍗😉</em></p>
-  </section>
+  <div class="container">
+    <header>
+      <h1>🎮 Da Vinci College E-sport Event</h1>
+      <p>Het grootste e-sport event OOIT georganiseerd door het Da Vinci College!</p>
+    </header>
 
-  <section id="handtekening">
-    <h2>Handtekening</h2>
-    <p>Zet hieronder je handtekening als je akkoord gaat:</p>
-    <canvas id="tekenveld" width="375" height="200"></canvas>
-    <div class="buttons">
-      <button onclick="wisCanvas()">Wissen</button>
-      <button onclick="downloadCanvas()">Download Handtekening</button>
-    </div>
+    <section>
+      <h2>Wat kan je verwachten?</h2>
+      <ul>
+        <li><strong>🔥 Fortnite:</strong> Bouw, schiet en wees de laatste die overblijft!</li>
+        <li><strong>🤖 R.E.P.O:</strong> Haal zo snel mogelijk de meest waardevolle spullen bij elkaar en win!</li>
+        <li><strong>🔫 Valorant:</strong> Tactiek, snelheid en aim brengen je naar de overwinning!</li>
+      </ul>
+    </section>
 
-    <div class="upload-box">
-      <label for="bestand">Upload eventueel het ingevulde formulier (PDF, PNG, JPG):</label>
-      <input type="file" id="bestand" name="bestand" accept=".pdf,.jpg,.jpeg,.png">
-    </div>
-  </section>
+    <section>
+      <h2>Voor wie?</h2>
+      <p>Alle MBO-studenten binnen het Da Vinci College 💡</p>
+    </section>
 
-  <footer>
-    <p>© 2025 Da Vinci College – Camerabeelden Toestemming</p>
-  </footer>
+    <section>
+      <h2>Wanneer?</h2>
+      <p>📆 Vrijdag 19 april</p>
+    </section>
+
+    <section>
+      <h2>Waar?</h2>
+      <p>
+        🚩 Evenementenhal Gorinchem<br>
+        Franklinweg 2, 4207 HZ
+      </p>
+    </section>
+
+    <section id="toestemming">
+      <h2>Toestemmingsformulier Camerabeelden</h2>
+      <p>
+        Met dit formulier geef je toestemming aan het Da Vinci College om camerabeelden te maken tijdens het e-sport event. 
+        De beelden kunnen worden gebruikt voor promotionele doeleinden zoals op de website of sociale media. De beelden worden 
+        maximaal <strong>4 dagen</strong> bewaard.
+      </p>
+      <form id="form" onsubmit="return validateForm()">
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" name="naam" required>
+
+        <label for="email">E-mailadres:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label>Handtekening:</label>
+        <canvas id="signature-pad"></canvas>
+        <input type="hidden" name="signature" id="signature-data">
+
+        <button type="submit">Verstuur formulier</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>© 2025 Da Vinci College – E-sport Event</p>
+    </footer>
+  </div>
 
   <script>
-    const canvas = document.getElementById('tekenveld');
+    const canvas = document.getElementById('signature-pad');
     const ctx = canvas.getContext('2d');
-    let tekenen = false;
+    let isDrawing = false;
 
-    canvas.addEventListener('mousedown', () => tekenen = true);
-    canvas.addEventListener('mouseup', () => tekenen = false);
-    canvas.addEventListener('mouseout', () => tekenen = false);
-    canvas.addEventListener('mousemove', teken);
+    function resizeCanvas() {
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      ctx.scale(ratio, ratio);
+    }
 
-    function teken(e) {
-      if (!tekenen) return;
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function getRelativePos(e) {
       const rect = canvas.getBoundingClientRect();
-      ctx.lineWidth = 2;
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-      ctx.stroke();
+      const x = (e.clientX || e.touches[0].clientX) - rect.left;
+      const y = (e.clientY || e.touches[0].clientY) - rect.top;
+      return { x, y };
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      const pos = getRelativePos(e);
       ctx.beginPath();
-      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.moveTo(pos.x, pos.y);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isDrawing) return;
+      const pos = getRelativePos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.strokeStyle = "#000";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+
+    // Touch support
+    canvas.addEventListener('touchstart', (e) => {
+      isDrawing = true;
+      const pos = getRelativePos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (!isDrawing) return;
+      const pos = getRelativePos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.strokeStyle = "#000";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      e.preventDefault();
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => isDrawing = false);
+
+    function isCanvasBlank(canvas) {
+      const blank = document.createElement('canvas');
+      blank.width = canvas.width;
+      blank.height = canvas.height;
+      return canvas.toDataURL() === blank.toDataURL();
     }
 
-    function wisCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function downloadCanvas() {
-      const link = document.createElement('a');
-      link.download = 'handtekening.png';
-      link.href = canvas.toDataURL();
-      link.click();
+    function validateForm() {
+      if (isCanvasBlank(canvas)) {
+        alert('Gelieve uw handtekening te zetten.');
+        return false;
+      }
+      document.getElementById('signature-data').value = canvas.toDataURL();
+      alert("Formulier verzonden!");
+      return true;
     }
   </script>
 </body>
