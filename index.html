@@ -9,11 +9,8 @@
 <body>
   <nav class="top-nav">
     <button onclick="document.getElementById('toestemming').scrollIntoView({behavior: 'smooth'})">
-      📄 Toestemmingsformulier
+      📄 Ga naar toestemmingsformulier
     </button>
-    <a href="login.html" class="nav-button-link">
-      <button>🔐 Inloggen</button>
-    </a>
   </nav>
 
   <div class="container">
@@ -43,9 +40,11 @@
 
     <section>
       <h2>Waar?</h2>
-      <p>🚩 Evenementenhal Gorinchem<br>Franklinweg 2, 4207 HZ</p>
+      <p>
+        🚩 Evenementenhal Gorinchem<br>
+        Franklinweg 2, 4207 HZ
+      </p>
     </section>
-
     <section id="inschrijven">
       <h2>Inschrijven</h2>
       <form action="https://formspree.io/f/mwplwzpg" method="POST" class="form" target="_blank">
@@ -69,13 +68,12 @@
         <button type="submit">Verstuur inschrijving</button>
       </form>
     </section>
-
     <section id="toestemming">
       <h2>Toestemmingsformulier Camerabeelden</h2>
       <p>
         Met dit formulier geef je toestemming aan het Da Vinci College om camerabeelden te maken tijdens het e-sport event. 
-        De beelden kunnen worden gebruikt voor promotionele doeleinden zoals op de website of sociale media. 
-        De beelden worden maximaal <strong>4 dagen</strong> bewaard.
+        De beelden kunnen worden gebruikt voor promotionele doeleinden zoals op de website of sociale media. De beelden worden 
+        maximaal <strong>4 dagen</strong> bewaard.
       </p>
       <form id="form" onsubmit="return validateForm()">
         <label for="naam">Naam:</label>
@@ -138,6 +136,7 @@
     canvas.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('mouseout', () => isDrawing = false);
 
+    // Touch support
     canvas.addEventListener('touchstart', (e) => {
       isDrawing = true;
       const pos = getRelativePos(e);

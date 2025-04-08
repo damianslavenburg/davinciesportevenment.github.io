@@ -21,29 +21,9 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin: 0.25rem;
 }
 
 .top-nav button:hover {
-  background-color: #e6b655;
-}
-
-.top-nav a {
-  text-decoration: none;
-}
-
-.top-nav a button {
-  background-color: #ffcb6b;
-  color: #000;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.top-nav a button:hover {
   background-color: #e6b655;
 }
 
@@ -159,4 +139,4 @@ footer {
   touch-action: none;
   display: block;
   margin-bottom: 1rem;
-}
+} 
