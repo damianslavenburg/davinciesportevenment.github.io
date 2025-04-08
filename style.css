@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #0f0f1b;
   color: #ffffff;
@@ -25,6 +29,26 @@ header h1 {
 header p {
   color: #cccccc;
   margin-top: 0.5rem;
+}
+
+nav {
+  background-color: #1c1c2e;
+  text-align: center;
+  padding: 1rem;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  background-color: #6d5dfc;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #5847c2;
 }
 
 section {
@@ -98,6 +122,15 @@ form button {
 
 form button:hover {
   background-color: #5847c2;
+}
+
+iframe {
+  width: 100%;
+  max-width: 375px;
+  height: 600px;
+  border: 0;
+  display: block;
+  margin: 0 auto;
 }
 
 footer {
