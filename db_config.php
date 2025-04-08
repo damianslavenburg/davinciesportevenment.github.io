@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root"; // of jouw gebruikersnaam
-$pass = "";     // of jouw wachtwoord
+$pass = "test";     // of jouw wachtwoord
 $db = "esport_event";
 
 $conn = new mysqli($host, $user, $pass, $db);
