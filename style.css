@@ -10,6 +10,10 @@ body {
   background-color: #1c1c2e;
   padding: 1rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .top-nav button {
@@ -123,13 +127,6 @@ form button:hover {
   background-color: #5847c2;
 }
 
-footer {
-  text-align: center;
-  color: #777;
-  font-size: 0.9rem;
-  margin-top: 3rem;
-}
-
 #signature-pad {
   border: 2px solid #ffffff;
   background-color: #ffffff;
@@ -139,4 +136,16 @@ footer {
   touch-action: none;
   display: block;
   margin-bottom: 1rem;
-} 
+}
+
+#livestream iframe {
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+footer {
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
